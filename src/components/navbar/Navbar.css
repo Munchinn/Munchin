@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Poppins:wght@700;800;900&display=swap');
+
 body {
     margin: 0;
 }
@@ -38,8 +40,37 @@ body {
 
 .nav-links {
     display: flex;
-    gap: 14px;
+    align-items: flex-start;
+    gap: 28px;
 }
 
+.nav-links a {
+    color: #1A1A1A;
+    text-decoration: none;
+    font-family:  "Hanken Grotesk", sans-serif;
+    font-style: normal;
+    font-size: 16px;
+    font-weight: 500;    
+    line-height: normal;
+
+}
+
+
 .signup {
+    padding: 14.5px 24px 15px 24px;
+    border-radius: 999px;
+    border: 2px solid #1A1A1A;
+    background: #FFBF00;
+    box-shadow: 3px 3px 0 0 #1A1A1A;
+}
+
+.signup a{
+    color: #1A1A1A;
+    font-family: Poppins;
+    text-decoration: none;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    letter-spacing: 0.56px;
 }
