@@ -2,10 +2,20 @@
 
 body {
     margin: 0;
+    /* Without this the page falls through to the browser's white canvas
+       wherever content is shorter than the viewport, and on overscroll. */
+    background-color: #F2CF7E;
 }
 
 * {
     box-sizing: border-box;
+}
+
+/* Shared page container. Sections stay full-bleed for their background and
+   borders; only their content is constrained to this measure and centred. */
+:root {
+    --page-max: 1440px;
+    --page-gutter: 45px;
 }
 
 .container {
@@ -18,7 +28,7 @@ body {
     width: 100%;
     height: 80px;
 
-    padding: 0 45px;
+    padding-inline: max(var(--page-gutter), calc((100% - var(--page-max)) / 2));
 
     background-color: #F2CF7E;
     border-bottom: 2px solid #1A1A1A;
@@ -132,8 +142,8 @@ body {
 
 /* Tablet: one row still fits, just tighter. */
 @media (max-width: 1023px) {
-    .container {
-        padding: 0 24px;
+    :root {
+        --page-gutter: 24px;
     }
 
     .nav-links {
@@ -160,13 +170,16 @@ body {
 
 /* Mobile: links collapse into a dropdown behind the hamburger. */
 @media (max-width: 879px) {
+    :root {
+        --page-gutter: 16px;
+    }
+
     .container {
         display: flex;
         align-items: center;
         gap: 10px;
 
         height: 64px;
-        padding: 0 16px;
     }
 
     .logo {
@@ -228,9 +241,12 @@ body {
 
 /* Very narrow phones: shrink the bar cluster so nothing spills. */
 @media (max-width: 359px) {
+    :root {
+        --page-gutter: 12px;
+    }
+
     .container {
         gap: 8px;
-        padding: 0 12px;
     }
 
     .logo {

@@ -4,7 +4,7 @@ import "./Navbar.css";
 const NAV_LINKS = [
     { href: "#product", label: "Product" },
     { href: "#findyourpal", label: "Find Your Pal" },
-    { href: "#dishestoeat", label: "Dishes to Eat" },
+    { href: "#dishestoeat", label: "Dishes To Eat" },
     { href: "#foodhunt", label: "Food Hunt" },
 ];
 
