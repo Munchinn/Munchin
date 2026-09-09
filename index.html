@@ -4,6 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Munchin</title>
+
+    <script>
+      // Resolve the theme before first paint so the page never flashes the
+      // wrong ground. Mirrors the logic in src/useTheme.ts.
+      (function () {
+        try {
+          var stored = localStorage.getItem("munchin-theme");
+          var dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          document.documentElement.dataset.theme = stored || (dark ? "dark" : "light");
+        } catch (e) {
+          document.documentElement.dataset.theme = "light";
+        }
+      })();
+    </script>
   </head>
 
   <body>

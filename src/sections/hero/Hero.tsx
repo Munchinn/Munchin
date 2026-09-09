@@ -6,8 +6,8 @@ const HERO_IMAGE = "/ready-food.jpeg";
 const TRENDING = ["5-min breakfast", "Paneer", "Late night", "Under 300 cal"];
 
 export default function Hero() {
-    // The field stays uncontrolled: nothing needs to re-render as it is typed
-    // in. A ref is enough for the trending chips to prefill it.
+    // Uncontrolled: nothing needs to re-render as the field is typed in. A ref
+    // is enough for the trending chips to prefill it.
     const inputRef = useRef<HTMLInputElement>(null);
 
     // Deliberately inert — there is no posts API yet, so submitting must not
@@ -24,45 +24,45 @@ export default function Hero() {
     };
 
     return (
-        <section className="hero">
+        <section className="hero page-inset" id="top">
 
             <h1 className="hero-title">
-                Food Should Bring People <span className="hero-title-accent">TOGETHER</span>
+                Food Should Bring People <span className="hero-accent">TOGETHER</span>
             </h1>
 
             <div className="hero-body">
 
-                <div className="hero-media">
+                <figure className="hero-media">
                     <img src={HERO_IMAGE} alt="Compartment trays of rice, curry, fried tofu and braised pork laid out side by side" />
-                    <p className="hero-media-badge">Posted 12 min ago &middot; @homekitchen</p>
-                </div>
+                    <figcaption className="hero-badge">Posted 12 min ago &middot; @homekitchen</figcaption>
+                </figure>
 
                 <div className="hero-copy">
                     <p className="hero-tagline">
                         Good Food is Better together. Find your people, Discover new dishes&hellip;
                     </p>
 
-                    <form className="hero-search" role="search" onSubmit={handleSearch}>
-                        <label className="hero-visually-hidden" htmlFor="hero-search-input">
+                    <form className="field hero-search" role="search" onSubmit={handleSearch}>
+                        <label className="visually-hidden" htmlFor="hero-search-input">
                             Search food posts
                         </label>
                         <input
                             id="hero-search-input"
-                            className="hero-search-input"
+                            className="field-input"
                             ref={inputRef}
                             type="search"
                             name="q"
                             autoComplete="off"
                             placeholder="What are you craving today?"
                         />
-                        <button className="hero-search-submit" type="submit" aria-label="Search dishes">
+                        <button className="btn-icon hero-search-submit" type="submit" aria-label="Search dishes">
                             <span aria-hidden="true">&rarr;</span>
                         </button>
                     </form>
 
                     <div className="hero-actions">
-                        <a className="hero-btn hero-btn-primary" href="#signup">Start posting</a>
-                        <a className="hero-browse" href="#dishestoeat">or browse dishes</a>
+                        <a className="btn btn-secondary" href="#signup">Start posting</a>
+                        <a className="btn-tertiary" href="#dishestoeat">or browse dishes</a>
                     </div>
 
                     <div className="hero-trending">
@@ -70,11 +70,7 @@ export default function Hero() {
                         <ul className="hero-trending-list" aria-labelledby="hero-trending-label">
                             {TRENDING.map((term) => (
                                 <li key={term}>
-                                    <button
-                                        className="hero-chip"
-                                        type="button"
-                                        onClick={() => applyTrending(term)}
-                                    >
+                                    <button className="chip" type="button" onClick={() => applyTrending(term)}>
                                         {term}
                                     </button>
                                 </li>

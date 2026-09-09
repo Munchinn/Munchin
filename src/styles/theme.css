@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Poppins:wght@700;800;900&display=swap');
+
+/* ---------------------------------------------------------------------------
+   Light is a sticker aesthetic: hard borders, zero-blur offset shadows.
+   Dark is a photograph aesthetic: hairlines and soft blurred elevation.
+   Anything that differs between the two is a token, so components never
+   branch on the theme themselves.
+--------------------------------------------------------------------------- */
+
+:root,
+[data-theme="light"] {
+    --bg:            #FDF3E0;
+    --bg-nav:        rgba(253, 243, 224, 0.86);
+    --surface:       #FFFFFF;
+    --surface-alt:   #FFF8E7;
+
+    --ink:           #1A1A1A;
+    --heading:       #1A1A1A;
+    --ink-muted:     #6E6559;
+    /* Spec value #8A8378 reaches only 3.75:1 on --surface, under the 4.5:1
+       the spec itself requires; placeholders are text. Darkened minimally. */
+    --ink-faint:     #726B60;
+
+    --primary:       #FFBF00;
+    --primary-hover: #FFE642;
+    --accent:        #E0570B;
+    --on-primary:    #1A1A1A;
+
+    --border:        #1A1A1A;
+    --border-soft:   rgba(26, 26, 26, 0.2);
+    --nav-border:    var(--border);
+
+    --logo-bg:       #1A1A1A;
+    --logo-fg:       #FFE642;
+
+    --elevation:     4px 4px 0 var(--border);
+    --elevation-lg:  10px 10px 0 var(--accent);
+
+    /* Theme-varying treatments the components read blindly. */
+    --accent-display:      var(--accent);
+    --field-border-width:  3px;
+    --photo-border-width:  3px;
+    --btn-shadow:          3px 3px 0 var(--border);
+    --btn-shadow-hover:    5px 5px 0 var(--border);
+    --btn-lift:            translate(-1px, -1px);
+    --chip-hover:          var(--primary-hover);
+    --badge-bg:            var(--surface);
+    --secondary-bg:        var(--ink);
+    --secondary-fg:        var(--logo-fg);
+}
+
+[data-theme="dark"] {
+    --bg:            #16130F;
+    --bg-nav:        rgba(22, 19, 15, 0.86);
+    --surface:       #241F19;
+    --surface-alt:   #2E2822;
+
+    --ink:           #F5EDDF;
+    --heading:       #FFF8EC;
+    --ink-muted:     #9C9082;
+    --ink-faint:     #9C9082;
+
+    --primary:       #FFBF00;
+    --primary-hover: #FFE642;
+    --accent:        #FF7900;
+    --on-primary:    #16130F;
+
+    --border:        #4A4136;
+    --border-soft:   #3A332B;
+    --nav-border:    var(--border-soft);
+
+    --logo-bg:       #FFBF00;
+    --logo-fg:       #16130F;
+
+    --elevation:     none;
+    --elevation-lg:  0 24px 60px rgba(0, 0, 0, 0.55);
+
+    /* The hard offsets read as artifacts on a dark ground, so they go away. */
+    --accent-display:      var(--primary);
+    --field-border-width:  2px;
+    --photo-border-width:  0px;
+    --btn-shadow:          none;
+    --btn-shadow-hover:    none;
+    --btn-lift:            none;
+    --chip-hover:          var(--primary);
+    --badge-bg:            rgba(22, 19, 15, 0.9);
+    --secondary-bg:        var(--primary);
+    --secondary-fg:        var(--on-primary);
+}
+
+/* Shared page frame. */
+:root {
+    --page-max:    1240px;
+    --page-gutter: 28px;
+    --section-pad: 88px;
+}
+
+/* The 28px gutter is a desktop figure; on small phones it costs 56px of a
+   320px screen and pushes the nav row over the edge. */
+@media (max-width: 879px) {
+    :root {
+        --page-gutter: 20px;
+    }
+}
+
+@media (max-width: 400px) {
+    :root {
+        --page-gutter: 16px;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: "Hanken Grotesk", sans-serif;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Constrains content while the section itself stays full-bleed. */
+.page-inset {
+    padding-inline: max(var(--page-gutter), calc((100% - var(--page-max)) / 2));
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
