@@ -1,0 +1,224 @@
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    /* 14px around a 46px control gives the ~80px bar without pinning a
+       height, so the row can still grow if its contents ever do. */
+    padding-block: 14px;
+
+    background: var(--bg-nav);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 2px solid var(--nav-border);
+}
+
+.navbar-logo {
+    flex: none;
+
+    padding: 10px 26px;
+
+    background: var(--logo-bg);
+    color: var(--logo-fg);
+    border-radius: 999px;
+    text-decoration: none;
+
+    font-family: Poppins, sans-serif;
+    font-size: 21px;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.045em;
+    white-space: nowrap;
+}
+
+/* Pushes the links, toggle and CTA into a group on the right. */
+.navbar-menu {
+    margin-left: auto;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-links a {
+    color: var(--ink);
+    text-decoration: none;
+
+    font-family: "Hanken Grotesk", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2;
+    white-space: nowrap;
+
+    transition: color 0.15s ease;
+}
+
+.navbar-links a:hover {
+    color: var(--accent);
+}
+
+.navbar-theme {
+    background: var(--surface);
+    color: var(--ink);
+    box-shadow: var(--btn-shadow);
+}
+
+.navbar-theme:hover {
+    background: var(--chip-hover);
+    color: var(--on-primary);
+}
+
+.navbar-signup {
+    flex: none;
+    font-size: 14px;
+}
+
+/* --- Hamburger: hidden until the mobile breakpoint ---------------------- */
+
+.navbar-burger {
+    display: none;
+    flex: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    width: 44px;
+    height: 44px;
+    padding: 0;
+
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.navbar-burger-bar {
+    display: block;
+    width: 24px;
+    height: 2.5px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.navbar-burger[aria-expanded="true"] .navbar-burger-bar:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+}
+
+.navbar-burger[aria-expanded="true"] .navbar-burger-bar:nth-child(2) {
+    opacity: 0;
+}
+
+.navbar-burger[aria-expanded="true"] .navbar-burger-bar:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+}
+
+@media (max-width: 1023px) {
+    .navbar-links {
+        gap: 24px;
+    }
+
+    .navbar-links a {
+        font-size: 15px;
+    }
+}
+
+/* --- Mobile: links collapse into a dropdown ----------------------------- */
+
+@media (max-width: 879px) {
+    .navbar {
+        gap: 10px;
+    }
+
+    .navbar-logo {
+        padding: 8px 18px;
+        font-size: 18px;
+    }
+
+    .navbar-burger {
+        display: flex;
+    }
+
+    .navbar-menu {
+        position: absolute;
+        /* 100% resolves against the bar's padding box, so clear its border. */
+        top: calc(100% + 2px);
+        left: 0;
+        right: 0;
+        margin-left: 0;
+
+        display: none;
+
+        padding: 4px 16px 14px;
+
+        background: var(--bg);
+        border-bottom: 2px solid var(--nav-border);
+    }
+
+    .navbar-menu.open {
+        display: block;
+    }
+
+    .navbar-links {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+    }
+
+    .navbar-links li + li a {
+        border-top: 1px solid var(--border-soft);
+    }
+
+    .navbar-links a {
+        display: block;
+        padding: 14px 2px;
+        font-size: 16px;
+    }
+
+    .navbar-theme {
+        width: 42px;
+        height: 42px;
+    }
+
+    .navbar-signup {
+        min-height: 42px;
+        padding: 0 18px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 400px) {
+    .navbar {
+        gap: 8px;
+    }
+
+    .navbar-logo {
+        padding: 7px 14px;
+        font-size: 16px;
+    }
+
+    .navbar-theme {
+        width: 38px;
+        height: 38px;
+    }
+
+    .navbar-signup {
+        min-height: 38px;
+        padding: 0 14px;
+        font-size: 12px;
+    }
+
+    .navbar-burger {
+        width: 38px;
+    }
+}

@@ -1,0 +1,152 @@
+.hero {
+    padding-block: var(--section-pad);
+}
+
+.hero-title {
+    /* 15ch keeps the break after "Bring"; in ch it scales with the font. */
+    max-width: 15ch;
+    margin: 0 0 clamp(36px, 4vw, 64px);
+
+    color: var(--heading);
+    font-family: Poppins, sans-serif;
+    font-size: clamp(46px, 7.4vw, 104px);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.045em;
+}
+
+.hero-accent {
+    /* Orange on the paper ground, yellow on the dark one. */
+    color: var(--accent-display);
+    text-transform: uppercase;
+}
+
+.hero-body {
+    display: grid;
+    /* min() lets the track shrink under its 300px floor once the container
+       is narrower than that, which a bare minmax(300px,1fr) cannot do — it
+       forced the page wider than the viewport below ~360px. */
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: 48px;
+    align-items: center;
+}
+
+/* --- Photo card --------------------------------------------------------- */
+
+.hero-media {
+    position: relative;
+    margin: 0;
+
+    /* 0px in dark: the hard outline belongs to the sticker aesthetic. */
+    border: var(--photo-border-width) solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--elevation-lg);
+    /* Keeps the image's corners inside the radius. */
+    line-height: 0;
+}
+
+.hero-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 5 / 4;
+    object-fit: cover;
+    border-radius: 18px;
+}
+
+.hero-badge {
+    position: absolute;
+    left: 16px;
+    bottom: 16px;
+
+    padding: 9px 18px;
+
+    background: var(--badge-bg);
+    border-radius: 999px;
+
+    color: var(--ink);
+    font-family: Poppins, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+/* --- Copy column -------------------------------------------------------- */
+
+.hero-copy {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(22px, 2.4vw, 32px);
+}
+
+.hero-tagline {
+    margin: 0;
+
+    color: var(--heading);
+    font-family: Poppins, sans-serif;
+    font-size: clamp(22px, 2.3vw, 34px);
+    font-weight: 800;
+    line-height: 1.22;
+    letter-spacing: -0.03em;
+}
+
+.hero-search-submit {
+    background: var(--primary);
+    color: var(--on-primary);
+    border-color: var(--border);
+    font-family: Poppins, sans-serif;
+    font-weight: 800;
+}
+
+.hero-search-submit:hover {
+    background: var(--primary-hover);
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 22px;
+}
+
+.hero-trending {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+}
+
+.hero-trending-label {
+    color: var(--ink-muted);
+    font-family: "Hanken Grotesk", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.hero-trending-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 879px) {
+    .hero {
+        padding-block: 56px;
+    }
+
+    .hero-body {
+        gap: 32px;
+    }
+
+    .hero-badge {
+        left: 12px;
+        bottom: 12px;
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+}
